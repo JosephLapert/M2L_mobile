@@ -31,7 +31,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),// The validator receives the text that the user has entered.
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Enter an email valid';
+                return 'Please enter an email';
               }
               return null;
             },
