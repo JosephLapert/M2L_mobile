@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => const FirstScreen(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/second': (context) => const SecondScreen(),
+        '/liste': (context) => const SecondScreen(),
+        
       },
     );
   }
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    users = getUsers();
+    users = Users.getUsers();
   }
 
   @override

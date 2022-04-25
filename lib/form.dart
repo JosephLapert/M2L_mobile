@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
+
+import 'api_call.dart';
 
 // Create a Form widget.
 class MyCustomForm extends StatefulWidget {
@@ -15,6 +18,8 @@ class MyCustomForm extends StatefulWidget {
 // Create a corresponding State class.
 // This class holds data related to the form.
 class MyCustomFormState extends State<MyCustomForm> {
+  String? email;
+  String? password;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -22,47 +27,50 @@ class MyCustomFormState extends State<MyCustomForm> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: ('Enter your email')
-            ),// The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter an email';
-              }
-              return null;
-            },
-          ),
-          TextFormField(
-            decoration: InputDecoration(
-              hintText: ('Enter your password')
-            ),// The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a password';
-              }
-              return null;
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
-                  );
-                  Navigator.pushNamed(context, '/second');
-                }
-              },
-              child: const Text('Submit'),
-            ),
-          ),
-        ],
-      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        FormHelper.inputFieldWidget(
+          context,
+          'email',
+          'email',
+          (onValidateVal) {
+            if (onValidateVal.isEmpty) {
+              return "L'email ne peut être vide";
+            }
+            return null;
+          },
+          (value) {
+            email = value;
+          },
+        ),
+        FormHelper.inputFieldWidget(
+          context,
+          'password',
+          'password',
+          (onValidateVal) {
+            if (onValidateVal.isEmpty) {
+              return "L'password ne peut être vide";
+            }
+            return null;
+          },
+          (value) {
+            password = value;
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: FormHelper.submitButton("login", () {
+            dynamic validate = _formKey.currentState?.validate();
+            if (validate != null && validate) {
+              _formKey.currentState?.save();
+              Users.login(context, email, password);
+            }
+          },
+              btnColor: Colors.blue,
+              borderColor: Colors.white,
+              txtColor: Colors.white,
+              borderRadius: 10),
+        )
+      ]),
     );
   }
 }
