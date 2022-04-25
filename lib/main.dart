@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const FirstScreen(),
         // When navigating to the "/second" route, build the SecondScreen widget.
         '/second': (context) => const SecondScreen(),
+        // When navigating to the "/third" route, build the ThirdScreen widget.
+        '/third': (context) => const ThirdScreen(),
       },
     );
   }

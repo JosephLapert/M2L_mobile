@@ -19,7 +19,7 @@ class Users {
         username: json["prenom"],
         email: json["email"],
         birthday: json["ddn"]
-      );
+  );
 }
 
 Future<Users> getUsers() async {

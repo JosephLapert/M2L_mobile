@@ -23,9 +23,37 @@ class SecondScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/third');
+            },
+            child: const Text('Passer au Third Screen'),
+          ),
+          const SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Revenir!'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ThirdScreen extends StatelessWidget {
+  const ThirdScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Seance n°'),
+        title: const Text("Statut d'inscription de"),
       ),
       body: Center(
         child: ElevatedButton(
@@ -33,7 +61,7 @@ class SecondScreen extends StatelessWidget {
             // Navigate back to first screen when tapped.
             Navigator.pop(context);
           },
-          child: const Text('Revenir !'),
+          child: const Text('Soumettre statut!'),
         ),
       ),
     );
