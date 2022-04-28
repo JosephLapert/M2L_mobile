@@ -62,9 +62,6 @@ class MyCustomFormState extends State<MyCustomForm> {
             dynamic validate = _formKey.currentState?.validate();
             if (validate != null && validate) {
               _formKey.currentState?.save();
-              print(email);
-              print(password);
-
               Users.login(context, email, password);
             }
           },
