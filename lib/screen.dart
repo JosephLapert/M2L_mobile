@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'form.dart';
 
+import 'statuscheckbox.dart';
+
 class FirstScreen extends StatelessWidget {
   const FirstScreen({Key? key}) : super(key: key);
 
@@ -55,14 +57,20 @@ class ThirdScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Statut d'inscription de"),
       ),
-      body: Center(
-        child: ElevatedButton(
+      body: Column(
+        children: <Widget> [
+          const StatusCheckBox(),
+          Center (
+
+          child: ElevatedButton(
           onPressed: () {
             // Navigate back to first screen when tapped.
             Navigator.pop(context);
           },
           child: const Text('Soumettre statut!'),
-        ),
+          ),
+          )
+        ]
       ),
     );
   }
