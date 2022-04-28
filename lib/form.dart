@@ -28,21 +28,26 @@ class MyCustomFormState extends State<MyCustomForm> {
     return Form(
       key: _formKey,
       child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        FormHelper.inputFieldWidget(
-          context,
-          'email',
-          'email',
-          (onValidateVal) {
-            if (onValidateVal.isEmpty) {
-              return "L'email ne peut être vide";
-            }
-            return null;
-          },
-          (value) {
-            email = value;
-          },
-          textColor: Colors.blue,
-          borderRadius: 10,
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+          child: FormHelper.inputFieldWidget(
+            context,
+            'email',
+            'email',
+            (onValidateVal) {
+              if (onValidateVal.isEmpty) {
+                return "L'email ne peut être vide";
+              }
+              return null;
+            },
+            (value) {
+              email = value;
+            },
+            textColor: Colors.red,
+            borderColor: Colors.blue,
+            borderRadius: 10,
+            hintColor: Colors.blue, 
+          ),
         ),
         FormHelper.inputFieldWidget(
           context,
@@ -58,9 +63,10 @@ class MyCustomFormState extends State<MyCustomForm> {
             password = value;
           },
           obscureText: true,
-          textColor: Colors.blue,
           borderRadius: 10,
-
+          textColor: Colors.blue,
+          borderColor: Colors.blue,
+          hintColor: Colors.blue,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -72,7 +78,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             }
           },
               btnColor: Colors.yellow,
-              borderColor: Colors.white,
+              borderColor: Colors.blue,
               txtColor: Colors.blue,
               borderRadius: 10),
         )
