@@ -48,7 +48,7 @@ class MyCustomFormState extends State<MyCustomForm> {
           'password',
           (onValidateVal) {
             if (onValidateVal.isEmpty) {
-              return "L'password ne peut être vide";
+              return "Le password ne peut être vide";
             }
             return null;
           },
@@ -58,10 +58,13 @@ class MyCustomFormState extends State<MyCustomForm> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-          child: FormHelper.submitButton("login", () {
+          child: FormHelper.submitButton("Connexion", () {
             dynamic validate = _formKey.currentState?.validate();
             if (validate != null && validate) {
               _formKey.currentState?.save();
+              print(email);
+              print(password);
+
               Users.login(context, email, password);
             }
           },

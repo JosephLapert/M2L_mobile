@@ -35,9 +35,19 @@ class Users {
 
   static login(BuildContext context, email, password) async {
     try {
-      var connection = {"email": email, "password": password};
-      var res = await http.post(Uri.parse("http://10.0.2.2:8000/api/authent/"),
-          body: connection);
+      Map<String, String> body = {"email": email, "psswd": password};
+      Map<String, String> headers = {
+        "Content-Type": "application/json; charset=UTF-8",
+      };
+      var url = Uri.parse('http://10.0.2.2:8000/api/authent/');
+      var res = await http.post(
+        url,
+        body: jsonEncode(body),
+        headers: headers,
+      );
+      // print('Response status: ${res.statusCode}');
+      // print('Response body: ${res.body}');
+
       if (res.statusCode == 200) {
         Navigator.pushNamed(context, '/liste');
       } else {
