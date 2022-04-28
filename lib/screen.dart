@@ -10,10 +10,12 @@ class FirstScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Page de connexion Maison de lorraine'),
+        backgroundColor: Colors.yellowAccent[100],
+        titleTextStyle:
+            const TextStyle(color: Colors.blue, fontWeight: FontWeight.w900),
       ),
-      body: const Center(
-        child: MyCustomForm()
-      ),
+      backgroundColor: Colors.yellowAccent[100],
+      body: const Center(child: MyCustomForm()),
     );
   }
 }

@@ -27,7 +27,7 @@ class MyCustomFormState extends State<MyCustomForm> {
     // Build a Form widget using the _formKey created above.
     return Form(
       key: _formKey,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
         FormHelper.inputFieldWidget(
           context,
           'email',
@@ -41,6 +41,8 @@ class MyCustomFormState extends State<MyCustomForm> {
           (value) {
             email = value;
           },
+          textColor: Colors.blue,
+          borderRadius: 10,
         ),
         FormHelper.inputFieldWidget(
           context,
@@ -55,6 +57,10 @@ class MyCustomFormState extends State<MyCustomForm> {
           (value) {
             password = value;
           },
+          obscureText: true,
+          textColor: Colors.blue,
+          borderRadius: 10,
+
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -65,9 +71,9 @@ class MyCustomFormState extends State<MyCustomForm> {
               Users.login(context, email, password);
             }
           },
-              btnColor: Colors.blue,
+              btnColor: Colors.yellow,
               borderColor: Colors.white,
-              txtColor: Colors.white,
+              txtColor: Colors.blue,
               borderRadius: 10),
         )
       ]),
