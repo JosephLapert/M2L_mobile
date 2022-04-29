@@ -9,7 +9,11 @@ class FirstScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Page de connexion Maison de lorraine'),
+        centerTitle: true,
+        title: const Text(
+          'Page de connexion M2L',
+          textAlign: TextAlign.center,
+        ),
         backgroundColor: Colors.yellowAccent[100],
         titleTextStyle:
             const TextStyle(color: Colors.blue, fontWeight: FontWeight.w900),
@@ -27,7 +31,11 @@ class SecondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Seance n°'),
+        centerTitle: true,
+        title: const Text('Seance n°1'),
+        titleTextStyle:
+            const TextStyle(color: Colors.blue, fontWeight: FontWeight.w900),
+        backgroundColor: Colors.yellowAccent[100],
       ),
       body: Center(
         child: ElevatedButton(
