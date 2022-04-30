@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'api_call.dart';
 import 'form.dart';
 
 class FirstScreen extends StatelessWidget {
@@ -24,28 +24,52 @@ class FirstScreen extends StatelessWidget {
   }
 }
 
-class SecondScreen extends StatelessWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late Future<Users> users;
+
+  @override
+  void initState() {
+    super.initState();
+    users = Users.getUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return MaterialApp(
+        home: Scaffold(
       appBar: AppBar(
+        title: const Text("Seance de test du "),
         centerTitle: true,
-        title: const Text('Seance n°1'),
-        titleTextStyle:
-            const TextStyle(color: Colors.blue, fontWeight: FontWeight.w900),
-        backgroundColor: Colors.yellowAccent[100],
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Navigate back to first screen when tapped.
-            Navigator.pop(context);
-          },
-          child: const Text('Revenir !'),
-        ),
+        child: FutureBuilder<Users>(
+            future: users,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(snapshot.data!.name),
+                    Text(snapshot.data!.username),
+                    Text(snapshot.data!.email),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              } else {
+                return const CircularProgressIndicator();
+              }
+            }),
       ),
-    );
+    ));
   }
 }
+
