@@ -7,24 +7,22 @@ class Users {
   String name;
   String username;
   String email;
-  dynamic birthday;
   Users({
     required this.name,
     required this.username,
     required this.email,
-    required this.birthday,
   });
 
   factory Users.fromJson(Map<String, dynamic> json) => Users(
       name: json["nom"],
       username: json["prenom"],
-      email: json["email"],
-      birthday: json["ddn"]);
+      email: json["email"],);
 
   static Future<Users> getUsers() async {
     final response = await http.get(
       Uri.parse('http://10.0.2.2:8000/api/users/'),
     );
+    print(response.body);
     if (response.statusCode == 200) {
       return Users.fromJson(json.decode(response.body)["success"][0][0]);
     } else {
