@@ -43,20 +43,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-      appBar: AppBar(
-        title: const Text("Seance de test du "),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: FutureBuilder<Users>(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Seance"),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: FutureBuilder<Users>(
             future: users,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
+                  children: <Widget>
+                  [
                     Text(snapshot.data!.name),
                     Text(snapshot.data!.username),
                     Text(snapshot.data!.email),
@@ -67,9 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
               } else {
                 return const CircularProgressIndicator();
               }
-            }),
+            },
+          ),
+        ),
       ),
-    ));
+    );
   }
 }
-
