@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => const FirstScreen(),
-        // When navigating to the "/second" route, build the SecondScreen widget.
+        // When navigating to the "/second" route, build the MyHomePage widget.
         '/liste': (context) => const MyHomePage(),
       },
     );

@@ -56,8 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>
-                  [
+                  children: <Widget>[
                     Text(snapshot.data!.name),
                     Text(snapshot.data!.username),
                     Text(snapshot.data!.email),
