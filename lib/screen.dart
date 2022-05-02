@@ -53,15 +53,20 @@ class _MyHomePageState extends State<MyHomePage> {
             future: users,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                return Container(
+                  width: 350,
+                  height: 50,
+                  color: Colors.green,
+                  child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(snapshot.data!.name),
+                    Text(snapshot.data!.name,),
                     Text(snapshot.data!.username),
-                    Text(snapshot.data!.email),
+                    Text(snapshot.data!.date_seance),
                   ],
-                );
+                )
+                );               
               } else if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               } else {
