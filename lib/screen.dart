@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Future<Users> users;
+  late Future<List> users;
 
   @override
   void initState() {
@@ -49,24 +49,23 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
         ),
         body: Center(
-          child: FutureBuilder<Users>(
+          child: FutureBuilder<List>(
             future: users,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Container(
-                  width: 350,
-                  height: 50,
-                  color: Colors.green,
-                  child:  Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(snapshot.data!.name,),
-                    Text(snapshot.data!.username),
-                    Text(snapshot.data!.date_seance),
-                  ],
-                )
-                );               
+                    width: 350,
+                    height: 50,
+                    color: Colors.green,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: snapshot.data!
+                          .map((e) => Text(
+                                e.name,
+                              ))
+                          .toList(),
+                    ));
               } else if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               } else {

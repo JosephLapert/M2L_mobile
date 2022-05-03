@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
@@ -19,12 +21,15 @@ class Users {
       date_seance: json["date_seance"],
   );
 
-  static Future<Users> getUsers() async {
+  static Future<List> getUsers() async {
     final response = await http.get(
       Uri.parse('http://10.0.2.2:8000/api/inscription/'),
     );
     if (response.statusCode == 200) {
-      return Users.fromJson(json.decode(response.body)["success"][0][0]);
+      // List res = (json.decode(response.body) as List);
+      // var test = res.map((user) => Users.fromJson(user)).toList();
+      List result = jsonDecode(response.body)["success"][0];
+      return result.map((e) => Users.fromJson(e)).toList();
     } else {
       throw Exception('Failed to load post');
     }
